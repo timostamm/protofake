@@ -1,0 +1,26 @@
+{
+  "name": "protofake",
+  "version": "0.0.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tsx --test src/*.test.ts",
+    "format": "prettier --write src/*.ts",
+    "generate": "buf generate",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.0.0",
+    "@faker-js/faker": "^8.4.1"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.37.0",
+    "@bufbuild/protoc-gen-es": "^2.0.0",
+    "@types/node": "^22.4.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  }
+}
