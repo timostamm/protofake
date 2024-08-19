@@ -5,14 +5,15 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "all": "npm run generate && npm run format && npm run test && npm run build && npm run attw",
+    "all": "npm run generate && npm run format && npm run test && npm run lint && npm run build && npm run attw",
     "test": "tsx --test src/*.test.ts",
-    "format": "prettier --write src/*.ts",
+    "format": "prettier --write src/*.ts *.mjs *.json",
     "generate": "buf generate",
     "prebuild": "rm -rf dist/*",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "tsc --project tsconfig.build.json --outDir ./dist/esm",
+    "lint": "eslint .",
     "attw": "attw --pack"
   },
   "sideEffects": false,
@@ -24,9 +25,7 @@
     }
   },
   "files": [
-    "dist/**",
-    "!dist/*/gen/**",
-    "!dist/**/*.test.js"
+    "dist/**"
   ],
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
@@ -36,9 +35,13 @@
     "@arethetypeswrong/cli": "^0.15.4",
     "@bufbuild/buf": "^1.37.0",
     "@bufbuild/protoc-gen-es": "^2.0.0",
+    "@eslint/js": "^9.9.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/node": "^22.4.0",
+    "eslint": "^9.9.0",
     "prettier": "^3.3.3",
     "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0"
   }
 }

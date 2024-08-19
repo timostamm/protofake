@@ -136,11 +136,12 @@ function fakeMap(map: ReflectMap, opt: Options, depth: number) {
       case "scalar":
         map.set(key, fakeScalar(field.scalar, opt, field));
         break;
-      case "message":
+      case "message": {
         const m = reflect(field.message);
         fakeMessage(m, opt, depth + 1, field);
         map.set(key, m);
         break;
+      }
     }
   }
 }
@@ -159,11 +160,12 @@ function fakeList(list: ReflectList, opt: Options, depth: number) {
       case "scalar":
         list.add(fakeScalar(field.scalar, opt, field));
         break;
-      case "message":
+      case "message": {
         const m = reflect(field.message);
         fakeMessage(m, opt, depth + 1, field);
         list.add(m);
         break;
+      }
     }
   }
 }
@@ -348,13 +350,14 @@ function fakeScalar(
       );
     case ScalarType.STRING:
       return fakeString(field);
-    case ScalarType.BYTES:
+    case ScalarType.BYTES: {
       const count = faker.number.int({ min: opt.bytesMin, max: opt.bytesMax });
       const bytes = new Uint8Array(count);
       for (let i = 0; i < count; i++) {
         bytes[i] = faker.number.int({ min: 0, max: 255 });
       }
       return bytes;
+    }
     case ScalarType.UINT32:
       return fakeUInt32(field);
     case ScalarType.SFIXED32:
@@ -398,6 +401,7 @@ function fakeUInt32(field?: DescField): number {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function fakeInt64(field?: DescField): bigint {
   return faker.number.bigInt({
     min: BigInt("-9223372036854775808"),
@@ -405,6 +409,7 @@ function fakeInt64(field?: DescField): bigint {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function fakeUInt64(field?: DescField): bigint {
   return faker.number.bigInt({
     min: BigInt(0),

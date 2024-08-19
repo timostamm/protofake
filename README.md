@@ -11,7 +11,7 @@ import { UserSchema } from "./gen/example_pb";
 
 const user = fake(UserSchema);
 user.firstName; // "Claude"
-user.lastName; // "Claude"
+user.lastName; // "Mueller"
 user.active; // true
 ```
 
