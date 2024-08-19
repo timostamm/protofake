@@ -1,0 +1,13 @@
+syntax="proto3";
+
+import "google/type/date.proto";
+import "google/type/timeofday.proto";
+
+message GoogleTypeDateMessage {
+  google.type.Date date = 1;
+  google.type.Date birthday = 2;
+}
+
+message GoogleTypeTimeOfDayMessage {
+  google.type.TimeOfDay time = 1;
+}

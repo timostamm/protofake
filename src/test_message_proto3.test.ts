@@ -3,8 +3,8 @@ import {
   ForeignMessageSchema,
   TestAllTypesProto3_NestedMessageSchema,
   TestAllTypesProto3Schema,
-} from "./gen/test_messages_proto3_pb";
-import { fake } from "./index";
+} from "./gen/test_messages_proto3_pb.js";
+import { fake } from "./index.js";
 import { createRegistry, toBinary, toJson } from "@bufbuild/protobuf";
 
 test("all types", () => {

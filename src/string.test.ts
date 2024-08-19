@@ -10,7 +10,7 @@ import {
   StringNetMessageSchema,
   StringOtherMessageSchema,
   StringUserMessageSchema,
-} from "./gen/string_pb";
+} from "./gen/string_pb.js";
 
 suite("string", () => {
   test("text", () => {

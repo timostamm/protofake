@@ -1,21 +1,17 @@
 import {
-  create,
-  DescEnum,
-  DescField,
-  DescMessage,
-  isMessage,
-  MessageShape,
-  Registry,
+  type DescEnum,
+  type DescField,
+  type DescMessage,
+  type MessageShape,
   ScalarType,
 } from "@bufbuild/protobuf";
 import {
   reflect,
-  ReflectList,
-  ReflectMap,
-  ReflectMessage,
-  ScalarValue,
+  type ReflectList,
+  type ReflectMap,
+  type ReflectMessage,
+  type ScalarValue,
 } from "@bufbuild/protobuf/reflect";
-import { faker } from "@faker-js/faker";
 import {
   FLOAT32_MAX,
   FLOAT32_MIN,
@@ -23,45 +19,25 @@ import {
   INT32_MIN,
   UINT32_MAX,
 } from "@bufbuild/protobuf/wire";
+import { ValueSchema } from "@bufbuild/protobuf/wkt";
+import { faker } from "@faker-js/faker";
+import { fakeDate, fakeTimeOfDay } from "./google-type.js";
+import { makeOptions, type Options } from "./options.js";
 import {
-  anyPack,
-  AnySchema,
-  DurationSchema,
-  FieldMaskSchema,
-  timestampFromDate,
-  TimestampSchema,
-  ValueSchema,
-} from "@bufbuild/protobuf/wkt";
+  fakeAny,
+  fakeDuration,
+  fakeFieldMask,
+  fakeTimestamp,
+} from "./well-known.js";
 
 export function fake<Desc extends DescMessage>(
   schema: Desc,
   options?: Partial<Options>,
   message?: MessageShape<Desc>,
 ): MessageShape<Desc> {
-  const opt: Options = {
-    ...options,
-    maxDepth: options?.maxDepth ?? 4,
-    bytesMin: options?.bytesMin ?? 0,
-    bytesMax: options?.bytesMax ?? 4096,
-    listMin: options?.listMin ?? 0,
-    listMax: options?.listMax ?? 100,
-    mapMin: options?.mapMin ?? 0,
-    mapMax: options?.mapMax ?? 100,
-  };
   const r = reflect(schema, message);
-  fakeMessage(r, opt, 0);
+  fakeMessage(r, makeOptions(options), 0);
   return r.message as MessageShape<Desc>;
-}
-
-interface Options {
-  maxDepth: number;
-  registry?: Registry;
-  listMin: number;
-  listMax: number;
-  mapMin: number;
-  mapMax: number;
-  bytesMin: number;
-  bytesMax: number;
 }
 
 function fakeMessage(
@@ -70,20 +46,25 @@ function fakeMessage(
   depth: number,
   field?: DescField,
 ) {
-  if (message.desc.typeName == TimestampSchema.typeName) {
-    fakeTimestamp(message, field);
+  if (fakeTimeOfDay(message)) {
     return;
   }
-  if (message.desc.typeName == DurationSchema.typeName) {
-    fakeDuration(message, field);
+  if (fakeDate(message, field)) {
     return;
   }
-  if (message.desc.typeName == AnySchema.typeName) {
-    fakeAny(message, opt, depth + 1, field);
+  if (fakeDate(message)) {
     return;
   }
-  if (message.desc.typeName == FieldMaskSchema.typeName) {
-    fakeFieldMask(message);
+  if (fakeFieldMask(message)) {
+    return;
+  }
+  if (fakeDuration(message)) {
+    return;
+  }
+  if (fakeTimestamp(message, field)) {
+    return;
+  }
+  if (fakeAny(message, opt, depth + 1, fakeMessage, field)) {
     return;
   }
   for (const member of message.members) {
@@ -180,98 +161,6 @@ function fakeList(list: ReflectList, opt: Options, depth: number) {
         fakeMessage(m, opt, depth + 1, field);
         list.add(m);
         break;
-    }
-  }
-}
-
-function fakeTimestamp(message: ReflectMessage, field?: DescField) {
-  if (message.desc.typeName != TimestampSchema.typeName) {
-    throw new Error(
-      `Expected ${TimestampSchema.typeName}, got ${message.desc.typeName}`,
-    );
-  }
-  let date = faker.date.recent();
-  if (field) {
-    if (
-      [
-        "exp",
-        "nbf",
-        "expires_at",
-        "expires",
-        "expiration",
-        "not_before",
-      ].includes(field.name)
-    ) {
-      date = faker.date.soon();
-    } else if (field.name == "birthdate" || field.name.startsWith("born_at")) {
-      date = faker.date.birthdate({ min: 18, max: 65, mode: "age" });
-    }
-  }
-  const ts = timestampFromDate(date);
-  message.set(TimestampSchema.field.seconds, ts.seconds);
-  message.set(TimestampSchema.field.nanos, ts.nanos);
-}
-
-function fakeDuration(message: ReflectMessage, field?: DescField) {
-  if (message.desc.typeName != DurationSchema.typeName) {
-    throw new Error(
-      `Expected ${DurationSchema.typeName}, got ${message.desc.typeName}`,
-    );
-  }
-  const seconds = faker.number.bigInt({
-    min: -315_576_000_000,
-    max: 315_576_000_000,
-  });
-  message.set(DurationSchema.field.seconds, seconds);
-  let nanos: number;
-  if (seconds > 0) {
-    nanos = faker.number.int({
-      min: 0,
-      max: 999_999_999,
-    });
-  } else if (seconds < 0) {
-    nanos = faker.number.int({
-      min: -999_999_999,
-      max: 0,
-    });
-  } else {
-    nanos = faker.number.int({
-      min: -999_999_999,
-      max: 999_999_999,
-    });
-  }
-  message.set(DurationSchema.field.nanos, nanos);
-}
-
-function fakeFieldMask(message: ReflectMessage) {
-  if (!isMessage(message.message, FieldMaskSchema)) {
-    throw new Error(
-      `Expected ${AnySchema.typeName}, got ${message.desc.typeName}`,
-    );
-  }
-  // Field masks paths must have a reversible JSON name.
-  // Since we don't know which message the field mask applies to,
-  // we simply ignore field masks for now.
-}
-
-function fakeAny(
-  message: ReflectMessage,
-  opt: Options,
-  depth: number,
-  field?: DescField,
-) {
-  if (!isMessage(message.message, AnySchema)) {
-    throw new Error(
-      `Expected ${AnySchema.typeName}, got ${message.desc.typeName}`,
-    );
-  }
-  if (depth + 1 <= opt.maxDepth && opt.registry) {
-    const types = Array.from(opt.registry).filter((t) => t.kind == "message");
-    if (types.length > 0) {
-      const type = faker.helpers.arrayElement(types);
-      const msg = create(type);
-      fakeMessage(reflect(type, msg), opt, depth + 1, field);
-      anyPack(type, msg, message.message);
     }
   }
 }

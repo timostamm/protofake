@@ -2,7 +2,7 @@ import { suite, test } from "node:test";
 import { fake } from "./index.js";
 import { create, toBinary, toJson } from "@bufbuild/protobuf";
 import assert from "node:assert";
-import { UserSchema } from "./gen/example_pb";
+import { UserSchema } from "./gen/example_pb.js";
 import { faker } from "@faker-js/faker";
 
 suite("example", () => {
