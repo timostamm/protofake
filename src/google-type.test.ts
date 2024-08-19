@@ -1,8 +1,8 @@
-import {suite, test} from "node:test";
-import {fake} from "./index.js";
+import { suite, test } from "node:test";
+import { fake } from "./index.js";
 import assert from "node:assert";
-import {faker} from "@faker-js/faker";
-import {GoogleTypeDateMessageSchema} from "./gen/google-type_pb.js";
+import { faker } from "@faker-js/faker";
+import { GoogleTypeDateMessageSchema } from "./gen/google-type_pb.js";
 
 suite("google.type.Date", () => {
   test("is populated with recent date", () => {

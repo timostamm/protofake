@@ -1,21 +1,39 @@
 {
   "name": "protofake",
   "version": "0.0.0",
-  "description": "",
+  "description": "Generate fake data for Protobuf messages.",
   "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
+    "all": "npm run generate && npm run format && npm run test && npm run build && npm run attw",
     "test": "tsx --test src/*.test.ts",
     "format": "prettier --write src/*.ts",
     "generate": "buf generate",
+    "prebuild": "rm -rf dist/*",
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm"
+    "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm",
+    "attw": "attw --pack"
   },
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/**",
+    "!dist/*/gen/**",
+    "!dist/**/*.test.js"
+  ],
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
     "@faker-js/faker": "^8.4.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.4",
     "@bufbuild/buf": "^1.37.0",
     "@bufbuild/protoc-gen-es": "^2.0.0",
     "@types/node": "^22.4.0",
