@@ -3,11 +3,11 @@ import {
   ForeignMessageSchema,
   TestAllTypesProto3_NestedMessageSchema,
   TestAllTypesProto3Schema,
-} from "./gen/proto/test_messages_proto3_pb";
+} from "./gen/test_messages_proto3_pb";
 import { fake } from "./index";
 import { createRegistry, toBinary, toJson } from "@bufbuild/protobuf";
 
-test("all types", (t) => {
+test("all types", () => {
   const registry = createRegistry(
     ForeignMessageSchema,
     TestAllTypesProto3_NestedMessageSchema,

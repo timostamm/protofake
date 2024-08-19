@@ -1,0 +1,58 @@
+syntax="proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message StringMessage {
+  string str = 1;
+  string text = 301;
+  string paragraph = 302;
+  string word = 303;
+  repeated string words = 304;
+  string sentence = 305;
+  string description = 306;
+}
+
+message StringUserMessage {
+  string email = 101;
+  string first_name = 102;
+  string last_name = 103;
+  string user_name = 104;
+}
+
+message StringIdMessage {
+  string id = 105;
+  string person_id = 106;
+}
+
+message StringFilesMessage {
+  string file_name = 203;
+  string file_path = 204;
+  string directory_path = 205;
+  string mime_type = 206;
+}
+
+message StringGitMessage {
+  string git_branch = 208;
+  string git_commit_message = 209;
+}
+
+message StringNetMessage {
+  string domain_name = 210;
+  string http_method = 211;
+  string http_status = 212;
+  string ip_v4 = 213;
+  string ip_v6 = 214;
+  string ip = 215;
+  string mac_address = 216;
+  string port_number = 217;
+  string protocol = 218;
+  string url = 219;
+  string user_agent = 220;
+  string slug = 221;
+}
+
+message StringOtherMessage {
+  string color = 201;
+  string vin = 202;
+  string isbn = 207;
+}

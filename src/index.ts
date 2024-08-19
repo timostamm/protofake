@@ -10,7 +10,6 @@ import {
 } from "@bufbuild/protobuf";
 import {
   reflect,
-  reflectList,
   ReflectList,
   ReflectMap,
   ReflectMessage,
@@ -54,7 +53,6 @@ export function fake<Desc extends DescMessage>(
   return r.message as MessageShape<Desc>;
 }
 
-// TODO option to not always populate optional fields?
 interface Options {
   maxDepth: number;
   registry?: Registry;
@@ -192,7 +190,24 @@ function fakeTimestamp(message: ReflectMessage, field?: DescField) {
       `Expected ${TimestampSchema.typeName}, got ${message.desc.typeName}`,
     );
   }
-  const ts = timestampFromDate(faker.date.recent());
+  let date = faker.date.recent();
+  if (field) {
+    if (
+      [
+        "exp",
+        "nbf",
+        "expires_at",
+        "expires",
+        "expiration",
+        "not_before",
+      ].includes(field.name)
+    ) {
+      date = faker.date.soon();
+    } else if (field.name == "birthdate" || field.name.startsWith("born_at")) {
+      date = faker.date.birthdate({ min: 18, max: 65, mode: "age" });
+    }
+  }
+  const ts = timestampFromDate(date);
   message.set(TimestampSchema.field.seconds, ts.seconds);
   message.set(TimestampSchema.field.nanos, ts.nanos);
 }
@@ -270,19 +285,139 @@ function fakeEnum(field: DescField & { enum: DescEnum }): number {
 }
 
 function fakeString(field?: DescField): string {
-  if (field?.name == "email") {
-    return faker.internet.email();
+  if (field) {
+    if (field.name == "email") {
+      return faker.internet.email();
+    }
+    if (field.name == "first_name") {
+      return faker.person.firstName();
+    }
+    if (field.name == "last_name") {
+      return faker.person.lastName();
+    }
+    if (field.name == "user_name") {
+      return faker.internet.userName();
+    }
+    if (
+      field.name == "id" ||
+      field.name == "uuid" ||
+      field.name.endsWith("_id") ||
+      field.name.endsWith("_uuid")
+    ) {
+      return faker.string.uuid();
+    }
+    if (field.name == "color") {
+      return faker.color.human();
+    }
+    if (field.name == "vin") {
+      return faker.vehicle.vin();
+    }
+    if (field.name == "file_name") {
+      return faker.system.commonFileName();
+    }
+    if (field.name == "file_path") {
+      return faker.system.filePath();
+    }
+    if (
+      ["dir_path", "directory_path", "directory", "dir"].includes(field.name)
+    ) {
+      return faker.system.directoryPath();
+    }
+    if (field.name == "mime_type") {
+      return faker.system.mimeType();
+    }
+    if (field.name == "isbn") {
+      return faker.commerce.isbn();
+    }
+    if (["git_branch", "branch_name", "branch"].includes(field.name)) {
+      return faker.git.branch();
+    }
+    if (["git_commit_message", "commit_message"].includes(field.name)) {
+      return faker.git.commitMessage();
+    }
+    if (["domain_name", "domain", "host"].includes(field.name)) {
+      return faker.internet.domainName();
+    }
+    if (["http_method", "http_verb"].includes(field.name)) {
+      return faker.internet.httpMethod();
+    }
+    if (["http_status", "http_status_code"].includes(field.name)) {
+      return faker.internet.httpStatusCode().toString();
+    }
+    if (
+      field.name == "ip_v6" ||
+      field.name.endsWith("_ip_v6") ||
+      field.name.endsWith("_ipv6")
+    ) {
+      return faker.internet.ipv6();
+    }
+    if (
+      field.name == "ip_v4" ||
+      field.name.endsWith("_ip_v4") ||
+      field.name.endsWith("_ipv4")
+    ) {
+      return faker.internet.ipv4();
+    }
+    if (
+      field.name == "ip" ||
+      field.name.endsWith("_ip") ||
+      field.name.endsWith("_ip")
+    ) {
+      return faker.internet.ipv4();
+    }
+    if (
+      ["mac_address", "mac"].includes(field.name) ||
+      field.name.endsWith("_mac")
+    ) {
+      return faker.internet.mac();
+    }
+    if (
+      field.name == "port_number" ||
+      field.name == "port_no" ||
+      field.name.endsWith("_port") ||
+      field.name.endsWith("_port_no")
+    ) {
+      return faker.internet.port().toString();
+    }
+    if (
+      field.name == "protocol" ||
+      field.name == "http_protocol" ||
+      field.name == "http_scheme" ||
+      field.name == "scheme"
+    ) {
+      return faker.internet.protocol();
+    }
+    if (field.name == "url" || field.name.endsWith("_url")) {
+      return faker.internet.url();
+    }
+    if (field.name == "user_agent") {
+      return faker.internet.userAgent();
+    }
+    if (field.name == "slug" || field.name.endsWith("_slug")) {
+      return faker.lorem.slug();
+    }
+
+    if (field.name == "text" || field.name.endsWith("_text")) {
+      return faker.lorem.text();
+    }
+    if (
+      field.name == "paragraph" ||
+      field.name == "description" ||
+      field.name.endsWith("_description")
+    ) {
+      return faker.lorem.paragraph();
+    }
+    if (field.name == "word") {
+      return faker.lorem.word();
+    }
+    if (field.name == "words" && field.fieldKind == "list") {
+      return faker.lorem.word();
+    }
+    if (field.name == "sentence") {
+      return faker.lorem.sentence();
+    }
   }
-  if (field?.name == "first_name") {
-    return faker.person.firstName();
-  }
-  if (field?.name == "last_name") {
-    return faker.person.lastName();
-  }
-  if (field?.name == "description") {
-    return faker.lorem.paragraphs({ min: 1, max: 10 });
-  }
-  return faker.string.sample();
+  return faker.lorem.word();
 }
 
 function fakeScalar(
