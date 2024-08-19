@@ -178,6 +178,60 @@ function fakeEnum(field: DescField & { enum: DescEnum }): number {
   return faker.helpers.arrayElement(values).number;
 }
 
+function fakeScalar(
+  scalar: ScalarType,
+  opt: Options,
+  field?: DescField,
+): ScalarValue {
+  switch (scalar) {
+    case ScalarType.DOUBLE:
+      return fakeDouble(field);
+    case ScalarType.FLOAT:
+      return faker.number.float({
+        min: FLOAT32_MIN,
+        max: FLOAT32_MAX,
+      });
+    case ScalarType.INT64:
+      return fakeInt64(field);
+    case ScalarType.UINT64:
+      return fakeUInt64(field);
+    case ScalarType.INT32:
+      return fakeInt32(field);
+    case ScalarType.FIXED64:
+      return fakeUInt64(field);
+    case ScalarType.FIXED32:
+      return fakeUInt32(field);
+    case ScalarType.BOOL:
+      return (
+        1 ===
+        faker.number.int({
+          min: 0,
+          max: 1,
+        })
+      );
+    case ScalarType.STRING:
+      return fakeString(field);
+    case ScalarType.BYTES: {
+      const count = faker.number.int({ min: opt.bytesMin, max: opt.bytesMax });
+      const bytes = new Uint8Array(count);
+      for (let i = 0; i < count; i++) {
+        bytes[i] = faker.number.int({ min: 0, max: 255 });
+      }
+      return bytes;
+    }
+    case ScalarType.UINT32:
+      return fakeUInt32(field);
+    case ScalarType.SFIXED32:
+      return fakeInt32(field);
+    case ScalarType.SFIXED64:
+      return fakeInt64(field);
+    case ScalarType.SINT32:
+      return fakeInt32(field);
+    case ScalarType.SINT64:
+      return fakeInt64(field);
+  }
+}
+
 function fakeString(field?: DescField): string {
   if (field) {
     if (field.name == "email") {
@@ -197,6 +251,30 @@ function fakeString(field?: DescField): string {
     }
     if (field.name == "bio") {
       return faker.person.bio();
+    }
+    if (field.name == "country") {
+      return faker.location.country();
+    }
+    if (field.name == "state") {
+      return faker.location.state();
+    }
+    if (field.name == "county") {
+      return faker.location.county();
+    }
+    if (field.name == "city") {
+      return faker.location.city();
+    }
+    if (field.name == "zip" || field.name == "zip_code") {
+      return faker.location.zipCode();
+    }
+    if (field.name == "street") {
+      return faker.location.street();
+    }
+    if (field.name == "street_address") {
+      return faker.location.streetAddress();
+    }
+    if (field.name == "time_zone" || field.name == "timezone") {
+      return faker.location.timeZone();
     }
     if (
       field.name == "id" ||
@@ -317,58 +395,16 @@ function fakeString(field?: DescField): string {
   return faker.lorem.word();
 }
 
-function fakeScalar(
-  scalar: ScalarType,
-  opt: Options,
-  field?: DescField,
-): ScalarValue {
-  switch (scalar) {
-    case ScalarType.DOUBLE:
-      return faker.number.float();
-    case ScalarType.FLOAT:
-      return faker.number.float({
-        min: FLOAT32_MIN,
-        max: FLOAT32_MAX,
-      });
-    case ScalarType.INT64:
-      return fakeInt64(field);
-    case ScalarType.UINT64:
-      return fakeUInt64(field);
-    case ScalarType.INT32:
-      return fakeInt32(field);
-    case ScalarType.FIXED64:
-      return fakeUInt64(field);
-    case ScalarType.FIXED32:
-      return fakeUInt32(field);
-    case ScalarType.BOOL:
-      return (
-        1 ===
-        faker.number.int({
-          min: 0,
-          max: 1,
-        })
-      );
-    case ScalarType.STRING:
-      return fakeString(field);
-    case ScalarType.BYTES: {
-      const count = faker.number.int({ min: opt.bytesMin, max: opt.bytesMax });
-      const bytes = new Uint8Array(count);
-      for (let i = 0; i < count; i++) {
-        bytes[i] = faker.number.int({ min: 0, max: 255 });
-      }
-      return bytes;
+function fakeDouble(field?: DescField): number {
+  if (field != undefined) {
+    if (["lat", "latitude"].includes(field.name)) {
+      return faker.location.latitude();
     }
-    case ScalarType.UINT32:
-      return fakeUInt32(field);
-    case ScalarType.SFIXED32:
-      return fakeInt32(field);
-    case ScalarType.SFIXED64:
-      return fakeInt64(field);
-    case ScalarType.SINT32:
-      return fakeInt32(field);
-    case ScalarType.SINT64:
-      return fakeInt64(field);
+    if (["lng", "longitude"].includes(field.name)) {
+      return faker.location.longitude();
+    }
   }
+  return faker.number.float();
 }
 
 function fakeInt32(field?: DescField): number {

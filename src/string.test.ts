@@ -6,6 +6,7 @@ import {
   StringFilesMessageSchema,
   StringGitMessageSchema,
   StringIdMessageSchema,
+  StringLocationMessageSchema,
   StringMessageSchema,
   StringNetMessageSchema,
   StringOtherMessageSchema,
@@ -161,6 +162,18 @@ suite("string", () => {
       "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.2; Trident/6.0)",
     );
     assert.strictEqual(msg.slug, "cotidie-blanditiis-complectus");
+  });
+  test("location", () => {
+    faker.seed(1234);
+    const msg = fake(StringLocationMessageSchema);
+    assert.strictEqual(msg.country, "Cocos (Keeling) Islands");
+    assert.strictEqual(msg.state, "Missouri");
+    assert.strictEqual(msg.county, "Greater Manchester");
+    assert.strictEqual(msg.zip, "46777-8212");
+    assert.strictEqual(msg.city, "Port Raulworth");
+    assert.strictEqual(msg.street, "Selena Corners");
+    assert.strictEqual(msg.streetAddress, "1546 Mervin Springs");
+    assert.strictEqual(msg.timeZone, "America/North_Dakota/Beulah");
   });
   test("other", () => {
     faker.seed(1234);

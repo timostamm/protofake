@@ -53,6 +53,17 @@ message StringNetMessage {
   string slug = 221;
 }
 
+message StringLocationMessage {
+  string country = 101;
+  string state = 102;
+  string county = 103;
+  string zip = 104;
+  string city = 105;
+  string street = 106;
+  string street_address = 107;
+  string time_zone = 108;
+}
+
 message StringOtherMessage {
   string color = 201;
   string vin = 202;

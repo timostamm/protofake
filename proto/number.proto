@@ -1,0 +1,10 @@
+syntax="proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message NumberMessage {
+  double latitude = 1;
+  double longitude = 2;
+  int32 http_status = 3;
+  int32 port_number = 4;
+}

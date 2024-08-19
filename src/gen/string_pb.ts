@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file string.proto.
  */
 export const file_string: GenFile = /*@__PURE__*/
-  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkieAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJEg0KBXBob25lGGkgASgJEgsKA2JpbxhqIAEoCSIwCg9TdHJpbmdJZE1lc3NhZ2USCgoCaWQYaSABKAkSEQoJcGVyc29uX2lkGGogASgJImkKElN0cmluZ0ZpbGVzTWVzc2FnZRISCglmaWxlX25hbWUYywEgASgJEhIKCWZpbGVfcGF0aBjMASABKAkSFwoOZGlyZWN0b3J5X3BhdGgYzQEgASgJEhIKCW1pbWVfdHlwZRjOASABKAkiRAoQU3RyaW5nR2l0TWVzc2FnZRITCgpnaXRfYnJhbmNoGNABIAEoCRIbChJnaXRfY29tbWl0X21lc3NhZ2UY0QEgASgJIvIBChBTdHJpbmdOZXRNZXNzYWdlEhQKC2RvbWFpbl9uYW1lGNIBIAEoCRIUCgtodHRwX21ldGhvZBjTASABKAkSFAoLaHR0cF9zdGF0dXMY1AEgASgJEg4KBWlwX3Y0GNUBIAEoCRIOCgVpcF92NhjWASABKAkSCwoCaXAY1wEgASgJEhQKC21hY19hZGRyZXNzGNgBIAEoCRIUCgtwb3J0X251bWJlchjZASABKAkSEQoIcHJvdG9jb2wY2gEgASgJEgwKA3VybBjbASABKAkSEwoKdXNlcl9hZ2VudBjcASABKAkSDQoEc2x1ZxjdASABKAkiUAoSU3RyaW5nT3RoZXJNZXNzYWdlEg4KBWNvbG9yGMkBIAEoCRIMCgN2aW4YygEgASgJEg0KBGlzYm4YzwEgASgJEg0KBGltZWkY0AEgASgJQg9CC1N0cmluZ1Byb3RvUAFiBnByb3RvMw", [file_google_protobuf_timestamp]);
+  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkieAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJEg0KBXBob25lGGkgASgJEgsKA2JpbxhqIAEoCSIwCg9TdHJpbmdJZE1lc3NhZ2USCgoCaWQYaSABKAkSEQoJcGVyc29uX2lkGGogASgJImkKElN0cmluZ0ZpbGVzTWVzc2FnZRISCglmaWxlX25hbWUYywEgASgJEhIKCWZpbGVfcGF0aBjMASABKAkSFwoOZGlyZWN0b3J5X3BhdGgYzQEgASgJEhIKCW1pbWVfdHlwZRjOASABKAkiRAoQU3RyaW5nR2l0TWVzc2FnZRITCgpnaXRfYnJhbmNoGNABIAEoCRIbChJnaXRfY29tbWl0X21lc3NhZ2UY0QEgASgJIvIBChBTdHJpbmdOZXRNZXNzYWdlEhQKC2RvbWFpbl9uYW1lGNIBIAEoCRIUCgtodHRwX21ldGhvZBjTASABKAkSFAoLaHR0cF9zdGF0dXMY1AEgASgJEg4KBWlwX3Y0GNUBIAEoCRIOCgVpcF92NhjWASABKAkSCwoCaXAY1wEgASgJEhQKC21hY19hZGRyZXNzGNgBIAEoCRIUCgtwb3J0X251bWJlchjZASABKAkSEQoIcHJvdG9jb2wY2gEgASgJEgwKA3VybBjbASABKAkSEwoKdXNlcl9hZ2VudBjcASABKAkSDQoEc2x1ZxjdASABKAkinQEKFVN0cmluZ0xvY2F0aW9uTWVzc2FnZRIPCgdjb3VudHJ5GGUgASgJEg0KBXN0YXRlGGYgASgJEg4KBmNvdW50eRhnIAEoCRILCgN6aXAYaCABKAkSDAoEY2l0eRhpIAEoCRIOCgZzdHJlZXQYaiABKAkSFgoOc3RyZWV0X2FkZHJlc3MYayABKAkSEQoJdGltZV96b25lGGwgASgJIlAKElN0cmluZ090aGVyTWVzc2FnZRIOCgVjb2xvchjJASABKAkSDAoDdmluGMoBIAEoCRINCgRpc2JuGM8BIAEoCRINCgRpbWVpGNABIAEoCUIPQgtTdHJpbmdQcm90b1ABYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message StringMessage
@@ -251,6 +251,58 @@ export const StringNetMessageSchema: GenMessage<StringNetMessage> = /*@__PURE__*
   messageDesc(file_string, 5);
 
 /**
+ * @generated from message StringLocationMessage
+ */
+export type StringLocationMessage = Message<"StringLocationMessage"> & {
+  /**
+   * @generated from field: string country = 101;
+   */
+  country: string;
+
+  /**
+   * @generated from field: string state = 102;
+   */
+  state: string;
+
+  /**
+   * @generated from field: string county = 103;
+   */
+  county: string;
+
+  /**
+   * @generated from field: string zip = 104;
+   */
+  zip: string;
+
+  /**
+   * @generated from field: string city = 105;
+   */
+  city: string;
+
+  /**
+   * @generated from field: string street = 106;
+   */
+  street: string;
+
+  /**
+   * @generated from field: string street_address = 107;
+   */
+  streetAddress: string;
+
+  /**
+   * @generated from field: string time_zone = 108;
+   */
+  timeZone: string;
+};
+
+/**
+ * Describes the message StringLocationMessage.
+ * Use `create(StringLocationMessageSchema)` to create a new message.
+ */
+export const StringLocationMessageSchema: GenMessage<StringLocationMessage> = /*@__PURE__*/
+  messageDesc(file_string, 6);
+
+/**
  * @generated from message StringOtherMessage
  */
 export type StringOtherMessage = Message<"StringOtherMessage"> & {
@@ -280,5 +332,5 @@ export type StringOtherMessage = Message<"StringOtherMessage"> & {
  * Use `create(StringOtherMessageSchema)` to create a new message.
  */
 export const StringOtherMessageSchema: GenMessage<StringOtherMessage> = /*@__PURE__*/
-  messageDesc(file_string, 6);
+  messageDesc(file_string, 7);
 
