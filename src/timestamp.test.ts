@@ -9,7 +9,7 @@ import { TimestampMessageSchema } from "./gen/timestamp_pb";
 suite("google.protobuf.Timestamp", () => {
   test("fakes based on field name", () => {
     faker.seed(1234);
-    faker.setDefaultRefDate(new Date(2024, 0, 1, 11, 30, 5));
+    faker.setDefaultRefDate("2024-01-01T11:30:05.000Z");
     const msg = fake(TimestampMessageSchema);
     const json = toJson(TimestampMessageSchema, msg);
     assert.deepStrictEqual(json, {
