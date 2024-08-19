@@ -8,13 +8,15 @@ import type { Date } from "./google/type/date_pb.js";
 import { file_google_type_date } from "./google/type/date_pb.js";
 import type { TimeOfDay } from "./google/type/timeofday_pb.js";
 import { file_google_type_timeofday } from "./google/type/timeofday_pb.js";
+import type { Color } from "./google/type/color_pb.js";
+import { file_google_type_color } from "./google/type/color_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google-type.proto.
  */
 export const file_google_type: GenFile = /*@__PURE__*/
-  fileDesc("ChFnb29nbGUtdHlwZS5wcm90byJdChVHb29nbGVUeXBlRGF0ZU1lc3NhZ2USHwoEZGF0ZRgBIAEoCzIRLmdvb2dsZS50eXBlLkRhdGUSIwoIYmlydGhkYXkYAiABKAsyES5nb29nbGUudHlwZS5EYXRlIkIKGkdvb2dsZVR5cGVUaW1lT2ZEYXlNZXNzYWdlEiQKBHRpbWUYASABKAsyFi5nb29nbGUudHlwZS5UaW1lT2ZEYXlCE0IPR29vZ2xlVHlwZVByb3RvUAFiBnByb3RvMw", [file_google_type_date, file_google_type_timeofday]);
+  fileDesc("ChFnb29nbGUtdHlwZS5wcm90byJdChVHb29nbGVUeXBlRGF0ZU1lc3NhZ2USHwoEZGF0ZRgBIAEoCzIRLmdvb2dsZS50eXBlLkRhdGUSIwoIYmlydGhkYXkYAiABKAsyES5nb29nbGUudHlwZS5EYXRlIkIKGkdvb2dsZVR5cGVUaW1lT2ZEYXlNZXNzYWdlEiQKBHRpbWUYASABKAsyFi5nb29nbGUudHlwZS5UaW1lT2ZEYXkiOwoWR29vZ2xlVHlwZUNvbG9yTWVzc2FnZRIhCgVjb2xvchgBIAEoCzISLmdvb2dsZS50eXBlLkNvbG9yQhNCD0dvb2dsZVR5cGVQcm90b1ABYgZwcm90bzM", [file_google_type_date, file_google_type_timeofday, file_google_type_color]);
 
 /**
  * @generated from message GoogleTypeDateMessage
@@ -54,4 +56,21 @@ export type GoogleTypeTimeOfDayMessage = Message<"GoogleTypeTimeOfDayMessage"> &
  */
 export const GoogleTypeTimeOfDayMessageSchema: GenMessage<GoogleTypeTimeOfDayMessage> = /*@__PURE__*/
   messageDesc(file_google_type, 1);
+
+/**
+ * @generated from message GoogleTypeColorMessage
+ */
+export type GoogleTypeColorMessage = Message<"GoogleTypeColorMessage"> & {
+  /**
+   * @generated from field: google.type.Color color = 1;
+   */
+  color?: Color;
+};
+
+/**
+ * Describes the message GoogleTypeColorMessage.
+ * Use `create(GoogleTypeColorMessageSchema)` to create a new message.
+ */
+export const GoogleTypeColorMessageSchema: GenMessage<GoogleTypeColorMessage> = /*@__PURE__*/
+  messageDesc(file_google_type, 2);
 

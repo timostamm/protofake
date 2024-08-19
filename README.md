@@ -26,8 +26,6 @@ Work in progress. Things to do:
 - Honor protovalidate options
 - Provide option to only partially populate optional fields
 - Generate address strings based on field name (e.g. street, city)
-- Special case google/type/month.proto
-- Special case google/type/color.proto
 - Special case google/type/latlng.proto
 - Special case google/type/localized_text.proto
 - Special case google/type/money.proto

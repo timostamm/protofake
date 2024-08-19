@@ -21,7 +21,7 @@ import {
 } from "@bufbuild/protobuf/wire";
 import { ValueSchema } from "@bufbuild/protobuf/wkt";
 import { faker } from "@faker-js/faker";
-import { fakeDate, fakeTimeOfDay } from "./google-type.js";
+import { fakeColor, fakeDate, fakeTimeOfDay } from "./google-type.js";
 import { makeOptions, type Options } from "./options.js";
 import {
   fakeAny,
@@ -46,6 +46,9 @@ function fakeMessage(
   depth: number,
   field?: DescField,
 ) {
+  if (fakeColor(message)) {
+    return;
+  }
   if (fakeTimeOfDay(message)) {
     return;
   }

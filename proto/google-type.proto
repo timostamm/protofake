@@ -2,6 +2,7 @@ syntax="proto3";
 
 import "google/type/date.proto";
 import "google/type/timeofday.proto";
+import "google/type/color.proto";
 
 message GoogleTypeDateMessage {
   google.type.Date date = 1;
@@ -10,4 +11,8 @@ message GoogleTypeDateMessage {
 
 message GoogleTypeTimeOfDayMessage {
   google.type.TimeOfDay time = 1;
+}
+
+message GoogleTypeColorMessage {
+  google.type.Color color = 1;
 }
