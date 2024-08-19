@@ -1,0 +1,40 @@
+name: ci
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    name: Test
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: NPM Install
+        run: npm ci
+      - name: Generate
+        run: npm run generate
+      - name: Format
+        run: npm run format
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Check changed files
+        id: check_changed_files
+        run: |
+          if [[ -z $(git status --porcelain | tee /dev/stderr) ]]; then
+            echo "OK"
+          else
+            echo "::error::Found a diff"
+            git diff
+            exit 1
+          fi
