@@ -16,10 +16,10 @@ export function makeOptions(opt: Partial<Options> | undefined): Options {
     ...opt,
     maxDepth: opt?.maxDepth ?? 4,
     bytesMin: opt?.bytesMin ?? 0,
-    bytesMax: opt?.bytesMax ?? 4096,
+    bytesMax: opt?.bytesMax ?? 256,
     listMin: opt?.listMin ?? 0,
-    listMax: opt?.listMax ?? 100,
+    listMax: opt?.listMax ?? 8,
     mapMin: opt?.mapMin ?? 0,
-    mapMax: opt?.mapMax ?? 100,
+    mapMax: opt?.mapMax ?? 8,
   };
 }
