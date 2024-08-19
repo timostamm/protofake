@@ -120,6 +120,8 @@ suite("string", () => {
     assert.strictEqual(msg.firstName, "Pablo");
     assert.strictEqual(msg.lastName, "Satterfield");
     assert.strictEqual(msg.userName, "Sabrina.Corwin80");
+    assert.strictEqual(msg.phone, "(918) 230-5463 x78305");
+    assert.strictEqual(msg.bio, "geek");
   });
   test("uuid", () => {
     faker.seed(1234);
@@ -166,5 +168,6 @@ suite("string", () => {
     assert.strictEqual(msg.color, "mint green");
     assert.strictEqual(msg.vin, "GLTELSSSV8D927866");
     assert.strictEqual(msg.isbn, "978-1-891813-05-4");
+    assert.strictEqual(msg.imei, "46-378305-054007-0");
   });
 });

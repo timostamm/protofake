@@ -25,7 +25,6 @@ Work in progress. Things to do:
 - Publish on npmjs.com
 - Honor protovalidate options
 - Provide option to only partially populate optional fields
-- Generate numbers based on field name (e.g. port number, age, HTTP status, phone)
 - Generate address strings based on field name (e.g. street, city)
 - Special case google/type/date.proto
 - Special case google/type/datetime.proto

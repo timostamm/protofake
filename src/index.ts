@@ -298,6 +298,12 @@ function fakeString(field?: DescField): string {
     if (field.name == "user_name") {
       return faker.internet.userName();
     }
+    if (["phone", "telephone", "mobile", "landline"].includes(field.name)) {
+      return faker.phone.number();
+    }
+    if (field.name == "bio") {
+      return faker.person.bio();
+    }
     if (
       field.name == "id" ||
       field.name == "uuid" ||
@@ -329,6 +335,9 @@ function fakeString(field?: DescField): string {
     if (field.name == "isbn") {
       return faker.commerce.isbn();
     }
+    if (field.name == "imei") {
+      return faker.phone.imei();
+    }
     if (["git_branch", "branch_name", "branch"].includes(field.name)) {
       return faker.git.branch();
     }
@@ -341,7 +350,7 @@ function fakeString(field?: DescField): string {
     if (["http_method", "http_verb"].includes(field.name)) {
       return faker.internet.httpMethod();
     }
-    if (["http_status", "http_status_code"].includes(field.name)) {
+    if (isFieldHttpStatus(field)) {
       return faker.internet.httpStatusCode().toString();
     }
     if (
@@ -371,12 +380,7 @@ function fakeString(field?: DescField): string {
     ) {
       return faker.internet.mac();
     }
-    if (
-      field.name == "port_number" ||
-      field.name == "port_no" ||
-      field.name.endsWith("_port") ||
-      field.name.endsWith("_port_no")
-    ) {
+    if (isFieldPortNumber(field)) {
       return faker.internet.port().toString();
     }
     if (
@@ -396,7 +400,6 @@ function fakeString(field?: DescField): string {
     if (field.name == "slug" || field.name.endsWith("_slug")) {
       return faker.lorem.slug();
     }
-
     if (field.name == "text" || field.name.endsWith("_text")) {
       return faker.lorem.text();
     }
@@ -434,30 +437,15 @@ function fakeScalar(
         max: FLOAT32_MAX,
       });
     case ScalarType.INT64:
-      return faker.number.bigInt({
-        min: BigInt("-9223372036854775808"),
-        max: BigInt("9223372036854775807"),
-      });
+      return fakeInt64(field);
     case ScalarType.UINT64:
-      return faker.number.bigInt({
-        min: BigInt("0"),
-        max: BigInt("18446744073709551615"),
-      });
+      return fakeUInt64(field);
     case ScalarType.INT32:
-      return faker.number.int({
-        min: INT32_MIN,
-        max: INT32_MAX,
-      });
+      return fakeInt32(field);
     case ScalarType.FIXED64:
-      return faker.number.bigInt({
-        min: BigInt("0"),
-        max: BigInt("18446744073709551615"),
-      });
+      return fakeUInt64(field);
     case ScalarType.FIXED32:
-      return faker.number.int({
-        min: 0,
-        max: UINT32_MAX,
-      });
+      return fakeUInt32(field);
     case ScalarType.BOOL:
       return (
         1 ===
@@ -476,29 +464,71 @@ function fakeScalar(
       }
       return bytes;
     case ScalarType.UINT32:
-      return faker.number.int({
-        min: 0,
-        max: UINT32_MAX,
-      });
+      return fakeUInt32(field);
     case ScalarType.SFIXED32:
-      return faker.number.int({
-        min: INT32_MIN,
-        max: INT32_MAX,
-      });
+      return fakeInt32(field);
     case ScalarType.SFIXED64:
-      return faker.number.bigInt({
-        min: BigInt("-9223372036854775808"),
-        max: BigInt("9223372036854775807"),
-      });
+      return fakeInt64(field);
     case ScalarType.SINT32:
-      return faker.number.int({
-        min: INT32_MIN,
-        max: INT32_MAX,
-      });
+      return fakeInt32(field);
     case ScalarType.SINT64:
-      return faker.number.bigInt({
-        min: BigInt("-9223372036854775808"),
-        max: BigInt("9223372036854775807"),
-      });
+      return fakeInt64(field);
   }
+}
+
+function fakeInt32(field?: DescField): number {
+  if (field != undefined) {
+    if (isFieldPortNumber(field)) {
+      return faker.internet.port();
+    }
+    if (isFieldHttpStatus(field)) {
+      return faker.internet.httpStatusCode();
+    }
+  }
+  return faker.number.int({
+    min: INT32_MIN,
+    max: INT32_MAX,
+  });
+}
+
+function fakeUInt32(field?: DescField): number {
+  if (field != undefined) {
+    if (isFieldPortNumber(field)) {
+      return faker.internet.port();
+    }
+    if (isFieldHttpStatus(field)) {
+      return faker.internet.httpStatusCode();
+    }
+  }
+  return faker.number.int({
+    min: 0,
+    max: UINT32_MAX,
+  });
+}
+
+function fakeInt64(field?: DescField): bigint {
+  return faker.number.bigInt({
+    min: BigInt("-9223372036854775808"),
+    max: BigInt("9223372036854775807"),
+  });
+}
+
+function fakeUInt64(field?: DescField): bigint {
+  return faker.number.bigInt({
+    min: BigInt(0),
+    max: BigInt("18446744073709551615"),
+  });
+}
+
+function isFieldPortNumber(field: DescField): boolean {
+  return (
+    field.name == "port_number" ||
+    field.name == "port_no" ||
+    field.name.endsWith("_port") ||
+    field.name.endsWith("_port_no")
+  );
+}
+
+function isFieldHttpStatus(field: DescField): boolean {
+  return ["http_status", "http_status_code"].includes(field.name);
 }

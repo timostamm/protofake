@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file string.proto.
  */
 export const file_string: GenFile = /*@__PURE__*/
-  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkiXAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJIjAKD1N0cmluZ0lkTWVzc2FnZRIKCgJpZBhpIAEoCRIRCglwZXJzb25faWQYaiABKAkiaQoSU3RyaW5nRmlsZXNNZXNzYWdlEhIKCWZpbGVfbmFtZRjLASABKAkSEgoJZmlsZV9wYXRoGMwBIAEoCRIXCg5kaXJlY3RvcnlfcGF0aBjNASABKAkSEgoJbWltZV90eXBlGM4BIAEoCSJEChBTdHJpbmdHaXRNZXNzYWdlEhMKCmdpdF9icmFuY2gY0AEgASgJEhsKEmdpdF9jb21taXRfbWVzc2FnZRjRASABKAki8gEKEFN0cmluZ05ldE1lc3NhZ2USFAoLZG9tYWluX25hbWUY0gEgASgJEhQKC2h0dHBfbWV0aG9kGNMBIAEoCRIUCgtodHRwX3N0YXR1cxjUASABKAkSDgoFaXBfdjQY1QEgASgJEg4KBWlwX3Y2GNYBIAEoCRILCgJpcBjXASABKAkSFAoLbWFjX2FkZHJlc3MY2AEgASgJEhQKC3BvcnRfbnVtYmVyGNkBIAEoCRIRCghwcm90b2NvbBjaASABKAkSDAoDdXJsGNsBIAEoCRITCgp1c2VyX2FnZW50GNwBIAEoCRINCgRzbHVnGN0BIAEoCSJBChJTdHJpbmdPdGhlck1lc3NhZ2USDgoFY29sb3IYyQEgASgJEgwKA3ZpbhjKASABKAkSDQoEaXNibhjPASABKAlCD0ILU3RyaW5nUHJvdG9QAWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkieAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJEg0KBXBob25lGGkgASgJEgsKA2JpbxhqIAEoCSIwCg9TdHJpbmdJZE1lc3NhZ2USCgoCaWQYaSABKAkSEQoJcGVyc29uX2lkGGogASgJImkKElN0cmluZ0ZpbGVzTWVzc2FnZRISCglmaWxlX25hbWUYywEgASgJEhIKCWZpbGVfcGF0aBjMASABKAkSFwoOZGlyZWN0b3J5X3BhdGgYzQEgASgJEhIKCW1pbWVfdHlwZRjOASABKAkiRAoQU3RyaW5nR2l0TWVzc2FnZRITCgpnaXRfYnJhbmNoGNABIAEoCRIbChJnaXRfY29tbWl0X21lc3NhZ2UY0QEgASgJIvIBChBTdHJpbmdOZXRNZXNzYWdlEhQKC2RvbWFpbl9uYW1lGNIBIAEoCRIUCgtodHRwX21ldGhvZBjTASABKAkSFAoLaHR0cF9zdGF0dXMY1AEgASgJEg4KBWlwX3Y0GNUBIAEoCRIOCgVpcF92NhjWASABKAkSCwoCaXAY1wEgASgJEhQKC21hY19hZGRyZXNzGNgBIAEoCRIUCgtwb3J0X251bWJlchjZASABKAkSEQoIcHJvdG9jb2wY2gEgASgJEgwKA3VybBjbASABKAkSEwoKdXNlcl9hZ2VudBjcASABKAkSDQoEc2x1ZxjdASABKAkiUAoSU3RyaW5nT3RoZXJNZXNzYWdlEg4KBWNvbG9yGMkBIAEoCRIMCgN2aW4YygEgASgJEg0KBGlzYm4YzwEgASgJEg0KBGltZWkY0AEgASgJQg9CC1N0cmluZ1Byb3RvUAFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message StringMessage
@@ -83,6 +83,16 @@ export type StringUserMessage = Message<"StringUserMessage"> & {
    * @generated from field: string user_name = 104;
    */
   userName: string;
+
+  /**
+   * @generated from field: string phone = 105;
+   */
+  phone: string;
+
+  /**
+   * @generated from field: string bio = 106;
+   */
+  bio: string;
 };
 
 /**
@@ -258,6 +268,11 @@ export type StringOtherMessage = Message<"StringOtherMessage"> & {
    * @generated from field: string isbn = 207;
    */
   isbn: string;
+
+  /**
+   * @generated from field: string imei = 208;
+   */
+  imei: string;
 };
 
 /**

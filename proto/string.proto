@@ -17,6 +17,8 @@ message StringUserMessage {
   string first_name = 102;
   string last_name = 103;
   string user_name = 104;
+  string phone = 105;
+  string bio = 106;
 }
 
 message StringIdMessage {
@@ -55,4 +57,5 @@ message StringOtherMessage {
   string color = 201;
   string vin = 202;
   string isbn = 207;
+  string imei = 208;
 }
