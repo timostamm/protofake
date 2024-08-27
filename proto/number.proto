@@ -1,7 +1,5 @@
 syntax="proto3";
 
-import "google/protobuf/timestamp.proto";
-
 message NumberMessage {
   double latitude = 1;
   double longitude = 2;

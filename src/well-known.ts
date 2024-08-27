@@ -10,38 +10,61 @@ import {
   TimestampSchema,
 } from "@bufbuild/protobuf/wkt";
 import { faker } from "@faker-js/faker";
+import { type FieldValidation, findValidationRules } from "./validate.js";
 
 export function fakeAny(
   message: ReflectMessage,
   opt: Options,
   depth: number,
+  field: DescField | undefined,
+  fieldContext: FieldValidation | undefined,
   fakeMessage: (
     message: ReflectMessage,
     opt: Options,
     depth: number,
-    field?: DescField,
+    field: DescField | undefined,
+    fieldContext: FieldValidation | undefined,
   ) => void,
-  field?: DescField,
 ): boolean {
   if (!isMessage(message.message, AnySchema)) {
     return false;
   }
+  const rules = findValidationRules(fieldContext, "any");
+
+  // TODO
+  rules?.in;
+  rules?.notIn;
+
   if (depth + 1 <= opt.maxDepth && opt.registry) {
     const types = Array.from(opt.registry).filter((t) => t.kind == "message");
     if (types.length > 0) {
       const type = faker.helpers.arrayElement(types);
       const msg = create(type);
-      fakeMessage(reflect(type, msg), opt, depth + 1, field);
+      fakeMessage(reflect(type, msg), opt, depth + 1, field, fieldContext);
       anyPack(type, msg, message.message);
     }
   }
   return true;
 }
 
-export function fakeDuration(message: ReflectMessage): boolean {
+export function fakeDuration(
+  message: ReflectMessage,
+  field: DescField | undefined,
+  fieldContext: FieldValidation | undefined,
+): boolean {
   if (message.desc.typeName != DurationSchema.typeName) {
     return false;
   }
+
+  const rules = findValidationRules(fieldContext, "duration");
+
+  // TODO
+  rules?.const;
+  rules?.greaterThan;
+  rules?.lessThan;
+  rules?.in;
+  rules?.notIn;
+
   const seconds = faker.number.bigInt({
     min: -315_576_000_000,
     max: 315_576_000_000,
@@ -80,11 +103,21 @@ export function fakeFieldMask(message: ReflectMessage): boolean {
 
 export function fakeTimestamp(
   message: ReflectMessage,
-  field?: DescField,
+  field: DescField | undefined,
+  fieldContext: FieldValidation | undefined,
 ): boolean {
   if (message.desc.typeName != TimestampSchema.typeName) {
     return false;
   }
+
+  const rules = findValidationRules(fieldContext, "timestamp");
+
+  // TODO
+  rules?.const;
+  rules?.greaterThan;
+  rules?.lessThan;
+  rules?.within;
+
   let date = faker.date.recent();
   if (field) {
     if (

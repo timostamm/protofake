@@ -4,3 +4,5 @@ modules:
   - path: proto
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/bufbuild/protovalidate
+

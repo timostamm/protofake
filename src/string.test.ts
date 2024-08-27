@@ -13,7 +13,7 @@ import {
   StringUserMessageSchema,
 } from "./gen/string_pb.js";
 
-suite("string", () => {
+suite("string faked based on field name", () => {
   test("text", () => {
     faker.seed(1234);
     const msg = fake(StringMessageSchema);
@@ -80,19 +80,19 @@ suite("string", () => {
     const msg = fake(StringNetMessageSchema);
     assert.strictEqual(msg.domainName, "detailed-language.name");
     assert.strictEqual(msg.httpMethod, "PATCH");
-    assert.strictEqual(msg.httpStatus, "305");
-    assert.strictEqual(msg.ipV4, "201.197.199.220");
-    assert.strictEqual(msg.ipV6, "5364:bbf3:d270:baf7:fb82:c1b9:00b6:d58a");
-    assert.strictEqual(msg.ip, "157.227.19.252");
-    assert.strictEqual(msg.macAddress, "51:e6:a7:68:cc:57");
-    assert.strictEqual(msg.portNumber, "37230");
-    assert.strictEqual(msg.protocol, "http");
-    assert.strictEqual(msg.url, "https://nocturnal-hostess.org");
+    assert.strictEqual(msg.httpStatus, "431");
+    assert.strictEqual(msg.ipV4, "156.201.197.199");
+    assert.strictEqual(msg.ipV6, "c536:4bbf:3d27:0baf:7fb8:2c1b:900b:6d58");
+    assert.strictEqual(msg.ip, "dd1f:82e8:e98b:bb6a:c9dc:9fb0:3cfa:f847");
+    assert.strictEqual(msg.macAddress, "ed:7a:e0:0f:2b:0e");
+    assert.strictEqual(msg.portNumber, "44228");
+    assert.strictEqual(msg.protocol, "https");
+    assert.strictEqual(msg.url, "https://wise-maintainer.info");
     assert.strictEqual(
       msg.userAgent,
-      "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.2; Trident/6.0)",
+      "Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/535.1.0 (KHTML, like Gecko) Chrome/29.0.811.0 Safari/535.1.0",
     );
-    assert.strictEqual(msg.slug, "cotidie-blanditiis-complectus");
+    assert.strictEqual(msg.slug, "aggero-pectus-succurro");
   });
   test("location", () => {
     faker.seed(1234);
@@ -113,5 +113,10 @@ suite("string", () => {
     assert.strictEqual(msg.vin, "GLTELSSSV8D927866");
     assert.strictEqual(msg.isbn, "978-1-891813-05-4");
     assert.strictEqual(msg.imei, "46-378305-054007-0");
+  });
+  test("unrecognized field name", () => {
+    faker.seed(1234);
+    const msg = fake(StringOtherMessageSchema);
+    assert.strictEqual(msg.unrecognized, "clamo");
   });
 });

@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message MapKeyConstraintsMessage {
+  map<int32, string> map = 1 [(buf.validate.field).map.keys = {
+    int32: {
+      gte: 77,
+      lte: 99,
+    }
+  }];
+}
+message MapValueConstraintsMessage {
+  map<int32, string> map = 1 [(buf.validate.field).map.values = {
+    string: {const: "abc"}
+  }];
+}
+
+message MapMinPairsMessage {
+  map<int32, string> map = 1 [(buf.validate.field).map.min_pairs = 9];
+}
+
+message MapMinMaxPairsMessage {
+  map<int32, string> map = 1 [
+    (buf.validate.field).map.min_pairs = 20,
+    (buf.validate.field).map.max_pairs = 20
+  ];
+}
+
+message MapRequiredMessage {
+  map<int32, string> map = 1 [(buf.validate.field).required = true];
+}
+
+message MapIgnoreConstraintsMessage {
+  map<int32, string> map = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).required = true,
+    (buf.validate.field).map.min_pairs = 20,
+    (buf.validate.field).map.max_pairs = 20,
+    (buf.validate.field).map.keys = {
+      int32: {
+        lte: 1,
+        gte: 10,
+      }
+    },
+    (buf.validate.field).map.values = {
+      string: {const: "abc"}
+    }
+  ];
+}
+
+message MapDisabledConstraintsMessage {
+  option (buf.validate.message).disabled = true;
+  map<int32, string> map = 1 [
+    (buf.validate.field).map.min_pairs = 20,
+    (buf.validate.field).map.max_pairs = 20
+  ];
+  MapMinMaxPairsMessage transitive = 2;
+}

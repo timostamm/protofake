@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message ListItemConstraintsMessage {
+  repeated string list = 1 [(buf.validate.field).repeated.items = {
+    string: {const: "abc"}
+  }];
+}
+
+message ListMinItemsMessage {
+  repeated string list = 1 [(buf.validate.field).repeated.min_items = 9];
+}
+
+message ListMinMaxItemsMessage {
+  repeated string list = 1 [
+    (buf.validate.field).repeated.min_items = 20,
+    (buf.validate.field).repeated.max_items = 20
+  ];
+}
+
+message ListRequiredMessage {
+  repeated string list = 1 [(buf.validate.field).required = true];
+}
+
+message ListIgnoreConstraintsMessage {
+  repeated string list = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).required = true,
+    (buf.validate.field).repeated.min_items = 20,
+    (buf.validate.field).repeated.max_items = 20,
+    (buf.validate.field).repeated.items = {
+      string: {const: "abc"}
+    }
+  ];
+}
+
+message ListDisabledConstraintsMessage {
+  option (buf.validate.message).disabled = true;
+  repeated string list = 1 [
+    (buf.validate.field).repeated.min_items = 20,
+    (buf.validate.field).repeated.max_items = 20
+  ];
+  ListMinMaxItemsMessage transitive = 2;
+}

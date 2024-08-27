@@ -12,7 +12,6 @@ suite("example", () => {
     const want = create(UserSchema, {
       firstName: "Claude",
       lastName: "Mueller",
-      active: true,
     });
     assert.deepStrictEqual(user, want);
   });

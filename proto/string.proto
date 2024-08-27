@@ -1,7 +1,5 @@
 syntax="proto3";
 
-import "google/protobuf/timestamp.proto";
-
 message StringMessage {
   string str = 1;
   string text = 301;
@@ -65,8 +63,9 @@ message StringLocationMessage {
 }
 
 message StringOtherMessage {
-  string color = 201;
-  string vin = 202;
-  string isbn = 207;
-  string imei = 208;
+  string color = 1;
+  string vin = 2;
+  string isbn = 3;
+  string imei = 4;
+  string unrecognized = 5;
 }

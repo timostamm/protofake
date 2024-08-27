@@ -4,14 +4,13 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file number.proto.
  */
 export const file_number: GenFile = /*@__PURE__*/
-  fileDesc("CgxudW1iZXIucHJvdG8iXgoNTnVtYmVyTWVzc2FnZRIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiABKAESEwoLaHR0cF9zdGF0dXMYAyABKAUSEwoLcG9ydF9udW1iZXIYBCABKAVCD0ILTnVtYmVyUHJvdG9QAWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("CgxudW1iZXIucHJvdG8iXgoNTnVtYmVyTWVzc2FnZRIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiABKAESEwoLaHR0cF9zdGF0dXMYAyABKAUSEwoLcG9ydF9udW1iZXIYBCABKAVCD0ILTnVtYmVyUHJvdG9QAWIGcHJvdG8z");
 
 /**
  * @generated from message NumberMessage

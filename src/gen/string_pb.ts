@@ -4,14 +4,13 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file string.proto.
  */
 export const file_string: GenFile = /*@__PURE__*/
-  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkieAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJEg0KBXBob25lGGkgASgJEgsKA2JpbxhqIAEoCSIwCg9TdHJpbmdJZE1lc3NhZ2USCgoCaWQYaSABKAkSEQoJcGVyc29uX2lkGGogASgJImkKElN0cmluZ0ZpbGVzTWVzc2FnZRISCglmaWxlX25hbWUYywEgASgJEhIKCWZpbGVfcGF0aBjMASABKAkSFwoOZGlyZWN0b3J5X3BhdGgYzQEgASgJEhIKCW1pbWVfdHlwZRjOASABKAkiRAoQU3RyaW5nR2l0TWVzc2FnZRITCgpnaXRfYnJhbmNoGNABIAEoCRIbChJnaXRfY29tbWl0X21lc3NhZ2UY0QEgASgJIvIBChBTdHJpbmdOZXRNZXNzYWdlEhQKC2RvbWFpbl9uYW1lGNIBIAEoCRIUCgtodHRwX21ldGhvZBjTASABKAkSFAoLaHR0cF9zdGF0dXMY1AEgASgJEg4KBWlwX3Y0GNUBIAEoCRIOCgVpcF92NhjWASABKAkSCwoCaXAY1wEgASgJEhQKC21hY19hZGRyZXNzGNgBIAEoCRIUCgtwb3J0X251bWJlchjZASABKAkSEQoIcHJvdG9jb2wY2gEgASgJEgwKA3VybBjbASABKAkSEwoKdXNlcl9hZ2VudBjcASABKAkSDQoEc2x1ZxjdASABKAkinQEKFVN0cmluZ0xvY2F0aW9uTWVzc2FnZRIPCgdjb3VudHJ5GGUgASgJEg0KBXN0YXRlGGYgASgJEg4KBmNvdW50eRhnIAEoCRILCgN6aXAYaCABKAkSDAoEY2l0eRhpIAEoCRIOCgZzdHJlZXQYaiABKAkSFgoOc3RyZWV0X2FkZHJlc3MYayABKAkSEQoJdGltZV96b25lGGwgASgJIlAKElN0cmluZ090aGVyTWVzc2FnZRIOCgVjb2xvchjJASABKAkSDAoDdmluGMoBIAEoCRINCgRpc2JuGM8BIAEoCRINCgRpbWVpGNABIAEoCUIPQgtTdHJpbmdQcm90b1ABYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CgxzdHJpbmcucHJvdG8ihwEKDVN0cmluZ01lc3NhZ2USCwoDc3RyGAEgASgJEg0KBHRleHQYrQIgASgJEhIKCXBhcmFncmFwaBiuAiABKAkSDQoEd29yZBivAiABKAkSDgoFd29yZHMYsAIgAygJEhEKCHNlbnRlbmNlGLECIAEoCRIUCgtkZXNjcmlwdGlvbhiyAiABKAkieAoRU3RyaW5nVXNlck1lc3NhZ2USDQoFZW1haWwYZSABKAkSEgoKZmlyc3RfbmFtZRhmIAEoCRIRCglsYXN0X25hbWUYZyABKAkSEQoJdXNlcl9uYW1lGGggASgJEg0KBXBob25lGGkgASgJEgsKA2JpbxhqIAEoCSIwCg9TdHJpbmdJZE1lc3NhZ2USCgoCaWQYaSABKAkSEQoJcGVyc29uX2lkGGogASgJImkKElN0cmluZ0ZpbGVzTWVzc2FnZRISCglmaWxlX25hbWUYywEgASgJEhIKCWZpbGVfcGF0aBjMASABKAkSFwoOZGlyZWN0b3J5X3BhdGgYzQEgASgJEhIKCW1pbWVfdHlwZRjOASABKAkiRAoQU3RyaW5nR2l0TWVzc2FnZRITCgpnaXRfYnJhbmNoGNABIAEoCRIbChJnaXRfY29tbWl0X21lc3NhZ2UY0QEgASgJIvIBChBTdHJpbmdOZXRNZXNzYWdlEhQKC2RvbWFpbl9uYW1lGNIBIAEoCRIUCgtodHRwX21ldGhvZBjTASABKAkSFAoLaHR0cF9zdGF0dXMY1AEgASgJEg4KBWlwX3Y0GNUBIAEoCRIOCgVpcF92NhjWASABKAkSCwoCaXAY1wEgASgJEhQKC21hY19hZGRyZXNzGNgBIAEoCRIUCgtwb3J0X251bWJlchjZASABKAkSEQoIcHJvdG9jb2wY2gEgASgJEgwKA3VybBjbASABKAkSEwoKdXNlcl9hZ2VudBjcASABKAkSDQoEc2x1ZxjdASABKAkinQEKFVN0cmluZ0xvY2F0aW9uTWVzc2FnZRIPCgdjb3VudHJ5GGUgASgJEg0KBXN0YXRlGGYgASgJEg4KBmNvdW50eRhnIAEoCRILCgN6aXAYaCABKAkSDAoEY2l0eRhpIAEoCRIOCgZzdHJlZXQYaiABKAkSFgoOc3RyZWV0X2FkZHJlc3MYayABKAkSEQoJdGltZV96b25lGGwgASgJImIKElN0cmluZ090aGVyTWVzc2FnZRINCgVjb2xvchgBIAEoCRILCgN2aW4YAiABKAkSDAoEaXNibhgDIAEoCRIMCgRpbWVpGAQgASgJEhQKDHVucmVjb2duaXplZBgFIAEoCUIPQgtTdHJpbmdQcm90b1ABYgZwcm90bzM");
 
 /**
  * @generated from message StringMessage
@@ -307,24 +306,29 @@ export const StringLocationMessageSchema: GenMessage<StringLocationMessage> = /*
  */
 export type StringOtherMessage = Message<"StringOtherMessage"> & {
   /**
-   * @generated from field: string color = 201;
+   * @generated from field: string color = 1;
    */
   color: string;
 
   /**
-   * @generated from field: string vin = 202;
+   * @generated from field: string vin = 2;
    */
   vin: string;
 
   /**
-   * @generated from field: string isbn = 207;
+   * @generated from field: string isbn = 3;
    */
   isbn: string;
 
   /**
-   * @generated from field: string imei = 208;
+   * @generated from field: string imei = 4;
    */
   imei: string;
+
+  /**
+   * @generated from field: string unrecognized = 5;
+   */
+  unrecognized: string;
 };
 
 /**
