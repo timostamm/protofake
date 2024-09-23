@@ -6,7 +6,8 @@ export function fakeEnum(
   field: DescField & { enum: DescEnum },
   validation: FieldValidation,
 ): number {
-  let values = field.enum.open && field.enum.values.length > 1
+  let values =
+    field.enum.open && field.enum.values.length > 1
       ? field.enum.values.slice(1)
       : field.enum.values;
   const rules = findValidationRules(validation, "enum");
@@ -17,7 +18,7 @@ export function fakeEnum(
     if (rules.in.length > 0) {
       return faker.helpers.arrayElement(rules.in);
     }
-    values = values.filter(value => !rules.notIn.includes(value.number));
+    values = values.filter((value) => !rules.notIn.includes(value.number));
     if (values.length == 0) {
       throw new Error(
         `Cannot fake a value for ${field.toString()}: The "not_in" rule is too restrictive.`,

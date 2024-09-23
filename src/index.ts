@@ -68,12 +68,12 @@ function fakeMessage(
   }
 
   // TODO
-  fieldValidation?.constraints?.cel;
+  // fieldValidation?.constraints?.cel;
 
   const messageValidation = getMessageValidation(message.desc, fieldValidation);
 
   // TODO
-  messageValidation.constraints?.cel;
+  // messageValidation.constraints?.cel;
 
   for (const member of message.members) {
     if (member.kind == "field" && message.isSet(member)) {
@@ -109,6 +109,7 @@ function fakeMessage(
     }
 
     const fieldValidation = getFieldValidation(field, messageValidation);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const optional =
       field.presence !== FeatureSet_FieldPresence.LEGACY_REQUIRED &&
       fieldValidation.constraints?.required !== true &&
@@ -143,6 +144,7 @@ function fakeMessage(
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function shouldPopulate(optional: boolean, opt: Options): boolean {
   if (!optional) {
     return true;

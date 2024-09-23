@@ -1,4 +1,4 @@
-import type { BoolRules, BytesRules } from "./gen/buf/validate/validate_pb.js";
+import type { BytesRules } from "./gen/buf/validate/validate_pb.js";
 import { faker } from "@faker-js/faker";
 import type { DescField } from "@bufbuild/protobuf";
 import type { Options } from "./options.js";
@@ -17,15 +17,15 @@ export function fakeBytes(
     }
 
     // TODO
-    rules.contains;
-    rules.notIn;
-    rules.len;
-    rules.maxLen;
-    rules.maxLen;
-    rules.pattern;
-    rules.prefix;
-    rules.suffix;
-    rules.wellKnown;
+    // rules.contains;
+    // rules.notIn;
+    // rules.len;
+    // rules.maxLen;
+    // rules.maxLen;
+    // rules.pattern;
+    // rules.prefix;
+    // rules.suffix;
+    // rules.wellKnown;
   }
   const count = faker.number.int({ min: opt.bytesMin, max: opt.bytesMax });
   const bytes = new Uint8Array(count);

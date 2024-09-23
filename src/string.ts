@@ -237,9 +237,9 @@ export function fakeString(field: DescField, rules?: StringRules): string {
 
     // TODO
     switch (rules.wellKnown.case) {
-      case "email": {
+      case "email":
         faker.internet.email();
-      }
+        break;
       case "hostname":
         faker.string.alpha({
           casing: "lower",
@@ -278,7 +278,8 @@ export function fakeString(field: DescField, rules?: StringRules): string {
       case "hostAndPort":
         break;
       case "wellKnownRegex":
-        rules.strict;
+        // TODO
+        // rules.strict;
         break;
     }
   }
@@ -295,9 +296,6 @@ function parseRules(field: DescField, rules: StringRules): ParsedRules {
   let maxCodePoints: number | undefined;
   let minBytes: number | undefined;
   let maxBytes: number | undefined;
-  let prefix = rules.prefix;
-  let suffix = rules.suffix;
-  let contains = rules.contains;
   if (rules.const != undefined) {
     throw new Error("unexpected const");
   }
@@ -378,9 +376,9 @@ function parseRules(field: DescField, rules: StringRules): ParsedRules {
     maxCodePoints,
     minBytes,
     maxBytes,
-    prefix,
-    suffix,
-    contains,
+    prefix: rules.prefix,
+    suffix: rules.suffix,
+    contains: rules.contains,
   };
 }
 
@@ -520,6 +518,7 @@ function countFixed(
 
 function countCodePoints(s: string): number {
   let count = 0;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   for (const _ of s) {
     count++;
   }

@@ -125,7 +125,6 @@ export type FieldValidation =
       disabled: true;
     };
 
-
 export function getFieldValidation(
   field: DescField,
   messageContext: MessageValidation,

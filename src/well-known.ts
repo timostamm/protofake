@@ -10,7 +10,7 @@ import {
   TimestampSchema,
 } from "@bufbuild/protobuf/wkt";
 import { faker } from "@faker-js/faker";
-import { type FieldValidation, findValidationRules } from "./validate.js";
+import { type FieldValidation } from "./validate.js";
 
 export function fakeAny(
   message: ReflectMessage,
@@ -29,11 +29,10 @@ export function fakeAny(
   if (!isMessage(message.message, AnySchema)) {
     return false;
   }
-  const rules = findValidationRules(fieldContext, "any");
-
   // TODO
-  rules?.in;
-  rules?.notIn;
+  // const rules = findValidationRules(fieldContext, "any");
+  // rules?.in;
+  // rules?.notIn;
 
   if (depth + 1 <= opt.maxDepth && opt.registry) {
     const types = Array.from(opt.registry).filter((t) => t.kind == "message");
@@ -49,21 +48,22 @@ export function fakeAny(
 
 export function fakeDuration(
   message: ReflectMessage,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   field: DescField | undefined,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fieldContext: FieldValidation | undefined,
 ): boolean {
   if (message.desc.typeName != DurationSchema.typeName) {
     return false;
   }
 
-  const rules = findValidationRules(fieldContext, "duration");
-
   // TODO
-  rules?.const;
-  rules?.greaterThan;
-  rules?.lessThan;
-  rules?.in;
-  rules?.notIn;
+  // const rules = findValidationRules(fieldContext, "duration");
+  // rules?.const;
+  // rules?.greaterThan;
+  // rules?.lessThan;
+  // rules?.in;
+  // rules?.notIn;
 
   const seconds = faker.number.bigInt({
     min: -315_576_000_000,
@@ -104,19 +104,19 @@ export function fakeFieldMask(message: ReflectMessage): boolean {
 export function fakeTimestamp(
   message: ReflectMessage,
   field: DescField | undefined,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   fieldContext: FieldValidation | undefined,
 ): boolean {
   if (message.desc.typeName != TimestampSchema.typeName) {
     return false;
   }
 
-  const rules = findValidationRules(fieldContext, "timestamp");
-
   // TODO
-  rules?.const;
-  rules?.greaterThan;
-  rules?.lessThan;
-  rules?.within;
+  // const rules = findValidationRules(fieldContext, "timestamp");
+  // rules?.const;
+  // rules?.greaterThan;
+  // rules?.lessThan;
+  // rules?.within;
 
   let date = faker.date.recent();
   if (field) {
