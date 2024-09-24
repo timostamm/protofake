@@ -9,7 +9,8 @@ export function fakeBytes(
   rules?: BytesRules,
 ): Uint8Array {
   if (rules !== undefined) {
-    if (rules.const != undefined) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (rules.hasOwnProperty("const")) {
       return rules.const;
     }
     if (rules.in.length > 0) {

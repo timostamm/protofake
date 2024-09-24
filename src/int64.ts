@@ -19,7 +19,8 @@ export function fakeInt64(
   if (rules != undefined) {
     // The following rules allow us to exit early. We do not check whether the
     // rules are satisfiable.
-    if (rules.const != undefined) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (rules.hasOwnProperty("const")) {
       return rules.const;
     }
     if (rules.in.length > 0) {

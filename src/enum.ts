@@ -12,7 +12,8 @@ export function fakeEnum(
       : field.enum.values;
   const rules = findValidationRules(validation, "enum");
   if (rules != undefined) {
-    if (rules.const != undefined) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (rules.hasOwnProperty("const")) {
       return rules.const;
     }
     if (rules.in.length > 0) {

@@ -1,7 +1,7 @@
-import type { DescField } from "@bufbuild/protobuf";
-import type {
-  DoubleRules,
-  FloatRules,
+import { type DescField } from "@bufbuild/protobuf";
+import {
+  type DoubleRules,
+  type FloatRules,
 } from "./gen/buf/validate/validate_pb.js";
 import { faker } from "@faker-js/faker";
 import { ValueSchema } from "@bufbuild/protobuf/wkt";
@@ -17,7 +17,8 @@ export function fakeFloat(
   if (rules != undefined) {
     // The following rules allow us to exit early. We do not check whether the
     // rules are satisfiable.
-    if (rules.const != undefined) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (rules.hasOwnProperty("const")) {
       return rules.const;
     }
     if (rules.in.length > 0) {
